@@ -21,7 +21,7 @@ var ELEMENT_COLORS := {
 
 var position_in_board := Vector2i(0, 0)
 
-var value : int = 2 :
+var value : int = 3 :
 	set(_new_value):
 		value = _new_value
 		var tween = get_tree().create_tween()

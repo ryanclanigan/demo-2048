@@ -29,7 +29,7 @@ func _ready():
 	randomize()
 	init_board()
 	elements[Vector2i(0, 3)].is_blank = false
-	elements[Vector2i(0, 3)].change_value(2)
+	elements[Vector2i(0, 3)].change_value(3)
 	pass # Replace with function body.
 
 
@@ -52,7 +52,7 @@ func random_new_element():
 			valid_elements.append(e)
 	var random_element : Element = valid_elements[randi() % valid_elements.size()]
 	random_element.is_blank = false
-	random_element.generate(2 if randi() % 2 == 0 else 4)
+	random_element.generate(3 if randi() % 2 == 0 else 6)
 
 func get_elements_can_move(_move_direction : Vector2i) -> Array:
 	var result := []
@@ -91,7 +91,7 @@ func handle_move(_move_direction : Vector2i):
 					if element_to.value == element.value:
 						if !pairs.keys().has(element_to) and !pairs.values().has(element_to):
 							pairs[element] = element_to
-							emit_signal("combine_event_happend", element.value * 2)
+							emit_signal("combine_event_happend", element.value * 3)
 					else:
 						break
 				pos_in_board += _move_direction
@@ -99,7 +99,7 @@ func handle_move(_move_direction : Vector2i):
 	for e in pairs:
 		var element : Element = e
 		var element_to : Element = pairs[e]
-		element_to.change_value(element.value * 2, true)
+		element_to.change_value(element.value * 3, true)
 		element.is_blank = true
 		element_to.is_blank = false
 		combine_events.append(element_to)
